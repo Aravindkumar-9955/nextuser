@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const UserDataDeatils =()=>{
+
+    const userdata=useSelector((state)=>state)
+    console.log({userdata});
     return <div>
 
         <h3>user deatails</h3>
