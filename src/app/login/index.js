@@ -34,7 +34,7 @@ const UserPage = () => {
             if (res.status === 200) {
                 alert("Successfully logged in");
                 router.push('/userdetails');
-                dispatch(StoreuserDataApi(userData)); // Dispatching action with userData
+                dispatch(StoreuserDataApi([userData])); // Dispatching action with userData
             } else {
                 // Handle other status codes if needed
             }
