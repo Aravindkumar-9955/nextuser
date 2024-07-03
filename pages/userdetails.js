@@ -25,7 +25,7 @@ const UserDataDeatils = () => {
 
     const userdata = useSelector((state) => state?.usercomp
     )
-
+    const [image,setimage]=useState(null)
     const [search, setSearch] = useState('')
     console.log({ userdata });
 
@@ -39,11 +39,20 @@ const UserDataDeatils = () => {
         }
 
     })
+
+    const handleFile=(e)=>{
+        let file=e.target.files[0]
+        let objecturl=URL.createObjectURL(file)
+        setimage(objecturl)
+    }
     return <div>
 
         <h3>user deatails</h3>
         <input value={search} onChange={(e) => setSearch(e.target.value)} />
-
+        <input type='file' onChange={handleFile} />
+            <div>
+                {image && <img src={image} alt="Selected Image" style={{ maxWidth: '100%', maxHeight: '400px' }} />}
+            </div>
         <div>
             {formatedData.map((item)=>(<>
                 <div>{item?.name}</div>
