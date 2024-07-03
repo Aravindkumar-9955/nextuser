@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useSession } from "../utiltls/useSession";
 
 
 const data = [
@@ -22,7 +23,9 @@ const data = [
 
 
 const UserDataDeatils = () => {
+    //
 
+    const {sessionstart,timer}=useSession()
     const userdata = useSelector((state) => state?.usercomp
     )
     const [image,setimage]=useState(null)
@@ -45,6 +48,41 @@ const UserDataDeatils = () => {
         let objecturl=URL.createObjectURL(file)
         setimage(objecturl)
     }
+    // let timeout= 60 * 1000
+    // let timer;
+
+    // const sessionlogout=()=>{
+    //    // console.log("logout",33);
+    //    clearTimeout(timer); // Clear any existing timer
+    //    timer = setTimeout(logout, timeout);
+
+    // }
+
+   
+    // function logout(){
+    //     console.log("logout",33);
+    //     window.location.href='/login'
+
+    // }
+    useEffect(()=>{
+        // logout()
+        sessionstart()
+        return () => {
+            clearTimeout(timer); // Clear the timeout when component unmounts
+        };
+    },[])
+
+    const handleUserActivity = () => {
+        clearTimeout(timer); // Clear previous timer
+        sessionstart(); // Set a new timer
+    };
+    useEffect(()=>{
+        document.addEventListener('mousemove', handleUserActivity);
+            return()=>{
+                document.addEventListener('mousemove', handleUserActivity);
+
+            }
+    },[])
     return <div>
 
         <h3>user deatails</h3>
