@@ -23,6 +23,7 @@ const data = [
 const UserDataDeatils = () => {
     const { sessionstart, timer } = useSession();
     const userdata = useSelector((state) => state?.usercomp);
+    console.log({userdata});
     const [image, setImage] = useState(null);
     const [search, setSearch] = useState('');
 
@@ -48,9 +49,9 @@ const UserDataDeatils = () => {
             clearTimeout(timer); // Clear the timeout when component unmounts
         };
     }, []);
-    let coun=0
+    // let coun=0
     const handleUserActivity = () => {
-        console.log("check mouse",coun++);
+        // console.log("check mouse",coun++);
         clearTimeout(timer);
         sessionstart();
     };
