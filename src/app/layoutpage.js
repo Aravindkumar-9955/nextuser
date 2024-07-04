@@ -14,8 +14,8 @@ const Layout = ({ children }) => {
     switch (router.pathname) {
       case '/admin':
         return userRole === 'admin' ? <Profile /> : null;
-      case '/user':
-        return userRole === 'user' ? <HomePage /> : null;
+      case '/homepage':
+        return userRole === 'admin' ? <HomePage /> : null;
       case '/homepage':
         return userRole === 'user' ? <HomePage /> : null;
       case '/dashboard':
@@ -27,6 +27,7 @@ const Layout = ({ children }) => {
 
   return (
     <div>
+      <div>hi i am sidebar</div>
       {renderComponent() || children}
     </div>
   );

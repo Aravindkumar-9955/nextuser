@@ -48,8 +48,9 @@ const UserDataDeatils = () => {
             clearTimeout(timer); // Clear the timeout when component unmounts
         };
     }, []);
-
+    let coun=0
     const handleUserActivity = () => {
+        console.log("check mouse",coun++);
         clearTimeout(timer);
         sessionstart();
     };
